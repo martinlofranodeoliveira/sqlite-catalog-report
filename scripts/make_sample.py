@@ -21,7 +21,9 @@ def make_sample(destination):
             connection.commit()
         finally:
             connection.close()
-        with temporary.open('rb') as stream:
+        # Windows _commit needs a writable descriptor. This is our own new
+        # temporary file; r+b preserves its bytes and never truncates it.
+        with temporary.open('r+b') as stream:
             os.fsync(stream.fileno())
         os.link(temporary, destination)
     finally:

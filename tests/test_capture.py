@@ -2,6 +2,7 @@
 
 from dataclasses import replace
 import hashlib
+import os
 import json
 from pathlib import Path
 import sqlite3
@@ -208,12 +209,16 @@ class CaptureTests(unittest.TestCase):
         self.assertTrue(all(name not in statement for statement, _ in parameter_calls))
 
     def test_special_filename_is_uri_encoded_and_source_not_modified(self):
-        self.path = self.root / 'fictício ?mode=rw#fragment%.sqlite'
+        # Windows forbids '?' in an actual filename. Both variants retain
+        # URI-sensitive '=', '#' and '%' plus spaces and non-ASCII text.
+        special = 'mode=rw#fragment%' if os.name == 'nt' else '?mode=rw#fragment%'
+        self.path = self.root / ('fictício ' + special + '.sqlite')
         self.create()
         original = self.path.read_bytes()
         report, _, calls = self.recorded()
         self.assertEqual(report['filename'], self.path.name)
-        self.assertIn('%3Fmode%3Drw%23fragment%25', calls[0][0][0])
+        expected = 'mode%3Drw%23fragment%25' if os.name == 'nt' else '%3Fmode%3Drw%23fragment%25'
+        self.assertIn(expected, calls[0][0][0])
         self.assertNotIn('immutable', calls[0][0][0])
         self.assertNotIn('nolock', calls[0][0][0])
         self.assertEqual(self.path.read_bytes(), original)

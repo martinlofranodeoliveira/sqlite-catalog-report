@@ -116,6 +116,22 @@ class IntegrationTests(unittest.TestCase):
         self.assertEqual(self.path.read_bytes(), original)
         self.assertEqual(list(self.root.glob('.catalog-sample-*')), [])
 
+    def test_sample_fsync_uses_a_writable_descriptor_for_windows(self):
+        make_sample = runpy.run_path(str(PROJECT / 'scripts' / 'make_sample.py'))['make_sample']
+        real_fsync = os.fsync
+        checked = []
+
+        def require_writable(fd):
+            # A zero-byte write changes nothing but rejects a read-only fd.
+            os.write(fd, b'')
+            checked.append(fd)
+            real_fsync(fd)
+
+        with patch('os.fsync', side_effect=require_writable):
+            make_sample(self.path)
+        self.assertEqual(len(checked), 1)
+        self.assertTrue(inspect_database(self.path)['complete'])
+
     def test_unresolved_declared_relationship_keeps_complete_capture_and_hash(self):
         self.create('CREATE TABLE child(parent_id REFERENCES missing_parent(id))')
         report = inspect_database(self.path)
