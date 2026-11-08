@@ -1,0 +1,12 @@
+flowchart LR
+  status["Captura completa - 0 relacoes nao resolvidas"]
+  t0["categorias"]
+  t1["equipes"]
+  t2["eventos"]
+  t3["gestores"]
+  t4["pedidos"]
+  t5["produtos"]
+  t1 -->|FK 0| t3
+  t3 -->|FK 0| t1
+  t4 -->|FK 0| t5
+  t5 -->|FK 0| t0

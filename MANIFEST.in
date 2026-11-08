@@ -1,0 +1,7 @@
+include LICENSE README.md SPEC.md CONTRIBUTING.md SECURITY.md THIRD_PARTY_NOTICES.md
+recursive-include docs *.md
+recursive-include examples *.sql *.json *.md *.mmd
+recursive-include scripts *.py
+recursive-include tests *.py
+recursive-include .github *.yml
+global-exclude *.py[cod]

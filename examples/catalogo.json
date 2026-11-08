@@ -1,0 +1,725 @@
+{
+  "catalog_sha256": "a054476e92db52865ec543a9b23813ebcb09e3cf70576097177e924035c9ca33",
+  "complete": true,
+  "filename": "exemplo.sqlite",
+  "graph": {
+    "complete": true,
+    "groups": [
+      {
+        "cyclic": false,
+        "depends_on": [],
+        "id": "g0",
+        "members": [
+          "categorias"
+        ]
+      },
+      {
+        "cyclic": true,
+        "depends_on": [],
+        "id": "g1",
+        "members": [
+          "equipes",
+          "gestores"
+        ]
+      },
+      {
+        "cyclic": false,
+        "depends_on": [],
+        "id": "g2",
+        "members": [
+          "eventos"
+        ]
+      },
+      {
+        "cyclic": false,
+        "depends_on": [
+          "g0"
+        ],
+        "id": "g3",
+        "members": [
+          "produtos"
+        ]
+      },
+      {
+        "cyclic": false,
+        "depends_on": [
+          "g3"
+        ],
+        "id": "g4",
+        "members": [
+          "pedidos"
+        ]
+      }
+    ],
+    "layers": [
+      [
+        "g0",
+        "g1",
+        "g2"
+      ],
+      [
+        "g3"
+      ],
+      [
+        "g4"
+      ]
+    ],
+    "relations": [
+      {
+        "foreign_key_id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "resolution": "resolved",
+        "source": "equipes",
+        "source_columns": [
+          "gestor_id"
+        ],
+        "target": "gestores",
+        "target_columns": [
+          "id"
+        ],
+        "target_declared": "gestores"
+      },
+      {
+        "foreign_key_id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "resolution": "resolved",
+        "source": "gestores",
+        "source_columns": [
+          "equipe_id"
+        ],
+        "target": "equipes",
+        "target_columns": [
+          "id"
+        ],
+        "target_declared": "equipes"
+      },
+      {
+        "foreign_key_id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "CASCADE",
+        "resolution": "resolved",
+        "source": "pedidos",
+        "source_columns": [
+          "produto_sku"
+        ],
+        "target": "produtos",
+        "target_columns": [
+          "sku"
+        ],
+        "target_declared": "produtos"
+      },
+      {
+        "foreign_key_id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "resolution": "resolved",
+        "source": "produtos",
+        "source_columns": [
+          "categoria_id"
+        ],
+        "target": "categorias",
+        "target_columns": [
+          "id"
+        ],
+        "target_declared": "categorias"
+      }
+    ],
+    "unresolved_count": 0
+  },
+  "issues": [],
+  "limits": {
+    "busy_timeout_ms": 1000,
+    "max_detail_rows": 100000,
+    "max_diagram_nodes": 200,
+    "max_issues": 1000,
+    "max_objects": 5000,
+    "max_text_bytes": 262144,
+    "max_total_text_bytes": 16777216,
+    "max_vm_steps": 2000000
+  },
+  "objects": [
+    {
+      "column_count": null,
+      "name": "produtos_categoria_nome",
+      "sql_sha256": "5c51d08001d856afde80411bdd93a0fd8adbc9591cdb9e4f648151a97d0c9c8b",
+      "sqlite_type": "index",
+      "strict": null,
+      "table_name": "produtos",
+      "type": "index",
+      "without_rowid": null
+    },
+    {
+      "column_count": null,
+      "name": "produtos_nome_parcial",
+      "sql_sha256": "8cb77aa60a31acca77831c8bc8c034351e1dd82bb0ef100e4d0a571de600068b",
+      "sqlite_type": "index",
+      "strict": null,
+      "table_name": "produtos",
+      "type": "index",
+      "without_rowid": null
+    },
+    {
+      "column_count": null,
+      "name": "sqlite_autoindex_categorias_1",
+      "sql_sha256": null,
+      "sqlite_type": "index",
+      "strict": null,
+      "table_name": "categorias",
+      "type": "index",
+      "without_rowid": null
+    },
+    {
+      "column_count": 2,
+      "name": "categorias",
+      "sql_sha256": "69677ce54c045e8b99ccb2e8540980c6f25c351aeb766587bfe7e70424fc400c",
+      "sqlite_type": "table",
+      "strict": true,
+      "table_name": "categorias",
+      "type": "table",
+      "without_rowid": false
+    },
+    {
+      "column_count": 2,
+      "name": "equipes",
+      "sql_sha256": "57f584024f7c3aa5b3233ab2da03780cf85cd6f4fe2558035ee2384a76dca4d3",
+      "sqlite_type": "table",
+      "strict": false,
+      "table_name": "equipes",
+      "type": "table",
+      "without_rowid": false
+    },
+    {
+      "column_count": 2,
+      "name": "eventos",
+      "sql_sha256": "0930e1ed253b2713aa0df0681c584ddee50f94069407939c0ac242bd5e133333",
+      "sqlite_type": "table",
+      "strict": false,
+      "table_name": "eventos",
+      "type": "table",
+      "without_rowid": false
+    },
+    {
+      "column_count": 2,
+      "name": "gestores",
+      "sql_sha256": "79492e9c2a4c40ec9dd4f5eb3fd73a64b25b5969e2a7925b5f928da118ec120e",
+      "sqlite_type": "table",
+      "strict": false,
+      "table_name": "gestores",
+      "type": "table",
+      "without_rowid": false
+    },
+    {
+      "column_count": 3,
+      "name": "pedidos",
+      "sql_sha256": "22386c1dec1e400f85870e412956e5e6e9afe0c5139051ef0342f5fa8edd1995",
+      "sqlite_type": "table",
+      "strict": true,
+      "table_name": "pedidos",
+      "type": "table",
+      "without_rowid": false
+    },
+    {
+      "column_count": 6,
+      "name": "produtos",
+      "sql_sha256": "754a59feda1e4c32a2234ebd911c97c57f67f74352e256e1646449fa37b1df74",
+      "sqlite_type": "table",
+      "strict": false,
+      "table_name": "produtos",
+      "type": "table",
+      "without_rowid": true
+    },
+    {
+      "column_count": null,
+      "name": "produto_aviso",
+      "sql_sha256": "028729601bdedd569dcfc1f6e4fb94fa1ddb244442215ae2de63480ba7f8f923",
+      "sqlite_type": "trigger",
+      "strict": null,
+      "table_name": "produtos",
+      "type": "trigger",
+      "without_rowid": null
+    },
+    {
+      "column_count": null,
+      "name": "vitrine",
+      "sql_sha256": "048425816e75715fbeea21ad6ec9eff14820fbe941af0985e0e072232a4a580c",
+      "sqlite_type": "view",
+      "strict": null,
+      "table_name": "vitrine",
+      "type": "view",
+      "without_rowid": null
+    }
+  ],
+  "options": {
+    "include_internal": false,
+    "include_sql": false
+  },
+  "profile": "sqlite-catalog-report-v1",
+  "schema": {
+    "application_id": 0,
+    "encoding": "UTF-8",
+    "schema_version": 10,
+    "user_version": 1
+  },
+  "schema_version": 1,
+  "sqlite_version": "3.46.1",
+  "status": "complete",
+  "summary": {
+    "detail_rows": 37,
+    "indexes": 3,
+    "objects": 11,
+    "ordinary_tables": 6,
+    "shadow_tables": 0,
+    "triggers": 1,
+    "views": 1,
+    "virtual_tables": 0
+  },
+  "tables": [
+    {
+      "columns": [
+        {
+          "cid": 0,
+          "declared_type": "INTEGER",
+          "default_present": false,
+          "default_sha256": null,
+          "hidden_code": 0,
+          "kind": "ordinary",
+          "name": "id",
+          "not_null_declared": false,
+          "primary_key_position": 1
+        },
+        {
+          "cid": 1,
+          "declared_type": "TEXT",
+          "default_present": false,
+          "default_sha256": null,
+          "hidden_code": 0,
+          "kind": "ordinary",
+          "name": "nome",
+          "not_null_declared": true,
+          "primary_key_position": 0
+        }
+      ],
+      "details_complete": true,
+      "foreign_keys": [],
+      "indexes": [
+        {
+          "complete": true,
+          "name": "sqlite_autoindex_categorias_1",
+          "origin": "u",
+          "partial": false,
+          "terms": [
+            {
+              "cid": 1,
+              "collation": "BINARY",
+              "descending": false,
+              "key": true,
+              "kind": "column",
+              "name": "nome",
+              "seqno": 0
+            },
+            {
+              "cid": -1,
+              "collation": "BINARY",
+              "descending": false,
+              "key": false,
+              "kind": "rowid",
+              "name": null,
+              "seqno": 1
+            }
+          ],
+          "unique": true
+        }
+      ],
+      "name": "categorias"
+    },
+    {
+      "columns": [
+        {
+          "cid": 0,
+          "declared_type": "INTEGER",
+          "default_present": false,
+          "default_sha256": null,
+          "hidden_code": 0,
+          "kind": "ordinary",
+          "name": "id",
+          "not_null_declared": false,
+          "primary_key_position": 1
+        },
+        {
+          "cid": 1,
+          "declared_type": "INTEGER",
+          "default_present": false,
+          "default_sha256": null,
+          "hidden_code": 0,
+          "kind": "ordinary",
+          "name": "gestor_id",
+          "not_null_declared": false,
+          "primary_key_position": 0
+        }
+      ],
+      "details_complete": true,
+      "foreign_keys": [
+        {
+          "columns": [
+            {
+              "from": "gestor_id",
+              "seq": 0,
+              "to": "id"
+            }
+          ],
+          "id": 0,
+          "match": "NONE",
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "target_table": "gestores"
+        }
+      ],
+      "indexes": [],
+      "name": "equipes"
+    },
+    {
+      "columns": [
+        {
+          "cid": 0,
+          "declared_type": "INTEGER",
+          "default_present": false,
+          "default_sha256": null,
+          "hidden_code": 0,
+          "kind": "ordinary",
+          "name": "id",
+          "not_null_declared": false,
+          "primary_key_position": 1
+        },
+        {
+          "cid": 1,
+          "declared_type": "TEXT",
+          "default_present": true,
+          "default_sha256": "749eb9758ad6bffb5dcfb81bcbc2325288f57aaaa42420b185f4c9757ab50fa3",
+          "hidden_code": 0,
+          "kind": "ordinary",
+          "name": "mensagem",
+          "not_null_declared": false,
+          "primary_key_position": 0
+        }
+      ],
+      "details_complete": true,
+      "foreign_keys": [],
+      "indexes": [],
+      "name": "eventos"
+    },
+    {
+      "columns": [
+        {
+          "cid": 0,
+          "declared_type": "INTEGER",
+          "default_present": false,
+          "default_sha256": null,
+          "hidden_code": 0,
+          "kind": "ordinary",
+          "name": "id",
+          "not_null_declared": false,
+          "primary_key_position": 1
+        },
+        {
+          "cid": 1,
+          "declared_type": "INTEGER",
+          "default_present": false,
+          "default_sha256": null,
+          "hidden_code": 0,
+          "kind": "ordinary",
+          "name": "equipe_id",
+          "not_null_declared": false,
+          "primary_key_position": 0
+        }
+      ],
+      "details_complete": true,
+      "foreign_keys": [
+        {
+          "columns": [
+            {
+              "from": "equipe_id",
+              "seq": 0,
+              "to": "id"
+            }
+          ],
+          "id": 0,
+          "match": "NONE",
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "target_table": "equipes"
+        }
+      ],
+      "indexes": [],
+      "name": "gestores"
+    },
+    {
+      "columns": [
+        {
+          "cid": 0,
+          "declared_type": "INTEGER",
+          "default_present": false,
+          "default_sha256": null,
+          "hidden_code": 0,
+          "kind": "ordinary",
+          "name": "id",
+          "not_null_declared": false,
+          "primary_key_position": 1
+        },
+        {
+          "cid": 1,
+          "declared_type": "TEXT",
+          "default_present": false,
+          "default_sha256": null,
+          "hidden_code": 0,
+          "kind": "ordinary",
+          "name": "produto_sku",
+          "not_null_declared": true,
+          "primary_key_position": 0
+        },
+        {
+          "cid": 2,
+          "declared_type": "INTEGER",
+          "default_present": true,
+          "default_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+          "hidden_code": 0,
+          "kind": "ordinary",
+          "name": "quantidade",
+          "not_null_declared": true,
+          "primary_key_position": 0
+        }
+      ],
+      "details_complete": true,
+      "foreign_keys": [
+        {
+          "columns": [
+            {
+              "from": "produto_sku",
+              "seq": 0,
+              "to": "sku"
+            }
+          ],
+          "id": 0,
+          "match": "NONE",
+          "on_delete": "NO ACTION",
+          "on_update": "CASCADE",
+          "target_table": "produtos"
+        }
+      ],
+      "indexes": [],
+      "name": "pedidos"
+    },
+    {
+      "columns": [
+        {
+          "cid": 0,
+          "declared_type": "TEXT",
+          "default_present": false,
+          "default_sha256": null,
+          "hidden_code": 0,
+          "kind": "ordinary",
+          "name": "sku",
+          "not_null_declared": true,
+          "primary_key_position": 1
+        },
+        {
+          "cid": 1,
+          "declared_type": "INTEGER",
+          "default_present": false,
+          "default_sha256": null,
+          "hidden_code": 0,
+          "kind": "ordinary",
+          "name": "categoria_id",
+          "not_null_declared": false,
+          "primary_key_position": 0
+        },
+        {
+          "cid": 2,
+          "declared_type": "TEXT",
+          "default_present": false,
+          "default_sha256": null,
+          "hidden_code": 0,
+          "kind": "ordinary",
+          "name": "nome",
+          "not_null_declared": true,
+          "primary_key_position": 0
+        },
+        {
+          "cid": 3,
+          "declared_type": "INTEGER",
+          "default_present": false,
+          "default_sha256": null,
+          "hidden_code": 0,
+          "kind": "ordinary",
+          "name": "preco_centavos",
+          "not_null_declared": true,
+          "primary_key_position": 0
+        },
+        {
+          "cid": 4,
+          "declared_type": "TEXT",
+          "default_present": false,
+          "default_sha256": null,
+          "hidden_code": 2,
+          "kind": "generated_virtual",
+          "name": "nome_busca",
+          "not_null_declared": false,
+          "primary_key_position": 0
+        },
+        {
+          "cid": 5,
+          "declared_type": "INTEGER",
+          "default_present": false,
+          "default_sha256": null,
+          "hidden_code": 3,
+          "kind": "generated_stored",
+          "name": "preco_dobrado",
+          "not_null_declared": false,
+          "primary_key_position": 0
+        }
+      ],
+      "details_complete": true,
+      "foreign_keys": [
+        {
+          "columns": [
+            {
+              "from": "categoria_id",
+              "seq": 0,
+              "to": null
+            }
+          ],
+          "id": 0,
+          "match": "NONE",
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "target_table": "categorias"
+        }
+      ],
+      "indexes": [
+        {
+          "complete": true,
+          "name": "produtos_categoria_nome",
+          "origin": "c",
+          "partial": false,
+          "terms": [
+            {
+              "cid": 1,
+              "collation": "BINARY",
+              "descending": false,
+              "key": true,
+              "kind": "column",
+              "name": "categoria_id",
+              "seqno": 0
+            },
+            {
+              "cid": 2,
+              "collation": "NOCASE",
+              "descending": true,
+              "key": true,
+              "kind": "column",
+              "name": "nome",
+              "seqno": 1
+            },
+            {
+              "cid": 0,
+              "collation": "BINARY",
+              "descending": false,
+              "key": false,
+              "kind": "column",
+              "name": "sku",
+              "seqno": 2
+            }
+          ],
+          "unique": true
+        },
+        {
+          "complete": true,
+          "name": "produtos_nome_parcial",
+          "origin": "c",
+          "partial": true,
+          "terms": [
+            {
+              "cid": -2,
+              "collation": "BINARY",
+              "descending": false,
+              "key": true,
+              "kind": "expression",
+              "name": null,
+              "seqno": 0
+            },
+            {
+              "cid": 0,
+              "collation": "BINARY",
+              "descending": false,
+              "key": false,
+              "kind": "column",
+              "name": "sku",
+              "seqno": 1
+            }
+          ],
+          "unique": false
+        },
+        {
+          "complete": true,
+          "name": "sqlite_autoindex_produtos_1",
+          "origin": "pk",
+          "partial": false,
+          "terms": [
+            {
+              "cid": 0,
+              "collation": "BINARY",
+              "descending": false,
+              "key": true,
+              "kind": "column",
+              "name": "sku",
+              "seqno": 0
+            },
+            {
+              "cid": 1,
+              "collation": "BINARY",
+              "descending": false,
+              "key": false,
+              "kind": "column",
+              "name": "categoria_id",
+              "seqno": 1
+            },
+            {
+              "cid": 2,
+              "collation": "BINARY",
+              "descending": false,
+              "key": false,
+              "kind": "column",
+              "name": "nome",
+              "seqno": 2
+            },
+            {
+              "cid": 3,
+              "collation": "BINARY",
+              "descending": false,
+              "key": false,
+              "kind": "column",
+              "name": "preco_centavos",
+              "seqno": 3
+            },
+            {
+              "cid": 5,
+              "collation": "BINARY",
+              "descending": false,
+              "key": false,
+              "kind": "column",
+              "name": "preco_dobrado",
+              "seqno": 4
+            }
+          ],
+          "unique": true
+        }
+      ],
+      "name": "produtos"
+    }
+  ]
+}
